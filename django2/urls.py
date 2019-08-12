@@ -15,12 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import re_path  # favicon.ico
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+from django.views.generic.base import RedirectView  # favicon.ico
+
+# favicon.ico
+favicon_view = RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)
+
+# 定制站点头部和标题
+admin.site.site_title = '博客后台管理系统'  # 站点标题
+admin.site.site_header = '博客后台管理系统'  # 站点头部
 
 urlpatterns = [
+                  re_path(r'favicon\.ico$', favicon_view),
+                  re_path(r'favicon\.png$', favicon_view),
                   path('admin/', admin.site.urls),
                   path(r'ckeditor/', include('ckeditor_uploader.urls')),
 

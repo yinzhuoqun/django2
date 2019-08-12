@@ -16,6 +16,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display_links = ('username', 'email', 'phone')
     list_editable = ['is_active', 'is_staff', 'is_superuser']
     # readonly_fields = ['password', ]
+
     # def get_model_form(self, **kwargs):
     #     """
     #     1.把 django UserCreationForm 拷贝出来修改成自己想要的

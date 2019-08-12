@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'apps.blog',
 ]
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -84,7 +83,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django2.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -94,7 +92,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -114,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -131,7 +127,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -144,7 +139,7 @@ STATIC_ROOT = 'static_root/'  # 只有右边斜杠
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
 # ckeditor
 CKEDITOR_CONFIGS = {
@@ -172,9 +167,16 @@ EMAIL_HOST = 'smtp.exmail.qq.com'  # SMTP地址
 EMAIL_PORT = 465  # SMTP发送端口
 EMAIL_HOST_USER = ''  # 自己的邮箱
 EMAIL_HOST_PASSWORD = ''  # 我的邮箱密码
-EMAIL_SUBJECT_PREFIX = '博客管理'  # 为邮件Subject-line前缀,默认是'[django]'
+EMAIL_SUBJECT_PREFIX = '测试部'  # 为邮件Subject-line前缀,默认是'[django]'
 # EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false。与SSL是互相排斥的。
 EMAIL_USE_SSL = True  # 与SMTP服务器通信时，是否启动SSl链接(安全链接)。默认是false ,腾讯用SSL
 
 # SMTPSenderRefused at /admin/password reset/
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # use when Debug
+
+# simpleUI
+SIMPLEUI_LOGO = '/static/images/joyo_icon.png'  # 管理后台log, 本地
+# SIMPLEUI_LOGO = 'http://img.zhuoqun.info/joyo_icon.png'  # 管理后台log, 本地
+SIMPLEUI_HOME_TITLE = '博客后台管理系统'  # 不启作用
+SIMPLEUI_HOME_ICON = ''  # 首页图标
+SIMPLEUI_INDEX = 'https://xieboke.net'  # 首页跳转地址
