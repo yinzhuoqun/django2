@@ -167,7 +167,7 @@ EMAIL_HOST = 'smtp.exmail.qq.com'  # SMTP地址
 EMAIL_PORT = 465  # SMTP发送端口
 EMAIL_HOST_USER = ''  # 自己的邮箱
 EMAIL_HOST_PASSWORD = ''  # 我的邮箱密码
-EMAIL_SUBJECT_PREFIX = '测试部'  # 为邮件Subject-line前缀,默认是'[django]'
+EMAIL_SUBJECT_PREFIX = '博客管理系统'  # 为邮件Subject-line前缀,默认是'[django]'
 # EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false。与SSL是互相排斥的。
 EMAIL_USE_SSL = True  # 与SMTP服务器通信时，是否启动SSl链接(安全链接)。默认是false ,腾讯用SSL
 
