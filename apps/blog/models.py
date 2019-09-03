@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
+from django.utils.html import format_html
 # from django.template.defaultfilters import slugify
 # from ckeditor.fields import RichTextField  # 不包含上传文件
 from ckeditor_uploader.fields import RichTextUploadingField  # 包含上传文件
@@ -112,7 +113,8 @@ class Article(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name="标签", related_name="tags_article", blank=True)
     num_views = models.IntegerField(default=0, verbose_name="浏览数量")
     num_favorites = models.IntegerField(default=0, verbose_name="收藏数量")
-    last_answerer = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="last_answerer_article", verbose_name="最后回复者", blank=True,
+    last_answerer = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="last_answerer_article",
+                                      verbose_name="最后回复者", blank=True,
                                       null=True)
     show_status = models.BooleanField(default=True, verbose_name="显示状态")
     time_create = models.DateTimeField(auto_now_add=True, verbose_name="发表时间")
@@ -130,6 +132,16 @@ class Article(models.Model):
         img_path = pq(html)('img').attr('src')  # 截取html内容中的路径
         # print("pic", img_path)
         return img_path  # 返回第一张图片路径
+
+    # 显示文章的缩略图
+    def thumb_shouw(self):
+        if self.get_content_img_url():
+            return format_html(
+                '<span><img src="{}"/>{}</span>', self.get_content_img_url(), "这里是缩略图")
+        else:
+            return format_html('<span style="color:{}">{}</span>', "red", "暂无缩略图")
+
+    thumb_shouw.short_description = "缩略图"
 
     class Meta:
         verbose_name = "文章"

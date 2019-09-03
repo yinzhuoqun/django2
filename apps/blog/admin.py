@@ -1,6 +1,7 @@
 from django.contrib import admin
 from apps.blog.models import *
 
+
 # Register your models here.
 
 
@@ -27,8 +28,8 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'node', 'num_views', 'show_status', 'slug', 'user']
-    list_display_links = ['id', 'title', 'node', 'num_views', 'user']
+    list_display = ['id', 'thumb_shouw', 'title', 'node', 'num_views', 'show_status', 'slug', 'user']
+    list_display_links = ['id', 'thumb_shouw', 'title', 'node', 'num_views', 'user']
     search_fields = ['title_short', 'user', 'content']
     list_editable = ["show_status", ]
     # style_fields = {"content": "ueditor"}
@@ -41,7 +42,7 @@ class FriendsURLAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'friend_name', 'site_name', 'site_link']
     list_editable = ["show_status", ]
 
-    
+
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Source, SourceAdmin)
 admin.site.register(Category, CategoryAdmin)
