@@ -141,7 +141,8 @@ class Article(models.Model):
         else:
             return format_html('<span style="color:{}">{}</span>', "red", "暂无缩略图")
 
-    thumb_shouw.short_description = "缩略图"
+    thumb_shouw.short_description = format_html('<span class="text">缩略图</span>')   # 新字段的显示的名称，相当于 verbose_name
+    thumb_shouw.admin_order_field = "-time_update"  # 指定排序方式，更新时间倒序排列
 
     class Meta:
         verbose_name = "文章"

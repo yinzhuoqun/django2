@@ -1,5 +1,7 @@
 from django.contrib import admin
+from django.forms import widgets
 from apps.blog.models import *
+from apps.blog.forms import ArticleAdminForm
 
 
 # Register your models here.
@@ -28,6 +30,8 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
+    form = ArticleAdminForm  # 指定了表单，就不要再用 formfield_overrides 了
+
     list_display = ['id', 'thumb_shouw', 'title', 'node', 'num_views', 'show_status', 'slug', 'user']
     list_display_links = ['id', 'thumb_shouw', 'title', 'node', 'num_views', 'user']
     search_fields = ['title_short', 'user', 'content']
@@ -35,6 +39,12 @@ class ArticleAdmin(admin.ModelAdmin):
     # style_fields = {"content": "ueditor"}
     readonly_fields = ('slug',)
     show_detail_fields = ['show_status', ]
+
+    # 重写 字段类型 的 widget, attrs 属性可以设置前端数量
+    # formfield_overrides = {
+    #     models.IntegerField: {'widget': widgets.NumberInput(attrs={"style": "width:50em;", })},
+    #     models.CharField: {'widget': widgets.TextInput(attrs={"style": "width:50%;", "placeholder": "请输入内容"})},
+    # }
 
 
 class FriendsURLAdmin(admin.ModelAdmin):
