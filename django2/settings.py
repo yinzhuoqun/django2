@@ -36,10 +36,15 @@ ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = 'users.UserProfile'
 
+# AUTH 方法（支持邮箱登录）
+AUTHENTICATION_BACKENDS = (
+    'apps.users.views.CustomBackend',
+)
+
 # Application definition
 
 INSTALLED_APPS = [
-    'simpleui',
+    # 'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

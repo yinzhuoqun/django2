@@ -17,5 +17,5 @@ class ArticleAdminForm(forms.ModelForm):
         model = Article
         fields = '__all__'
         widgets = {
-            "title": TextInput(attrs={"style": "width:50%;", "placeholder": "请输入标题"}),
+            "title": TextInput(attrs={"style": "width:45%;", "placeholder": "请输入标题"}),
         }

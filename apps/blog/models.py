@@ -133,7 +133,7 @@ class Article(models.Model):
         # print("pic", img_path)
         return img_path  # 返回第一张图片路径
 
-    # 显示文章的缩略图
+    # 管理后台显示文章的缩略图
     def thumb_shouw(self):
         if self.get_content_img_url():
             return format_html(
