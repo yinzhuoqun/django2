@@ -106,7 +106,7 @@ class Article(models.Model):
     """
     title = models.CharField(max_length=128, unique=True, verbose_name="标题")
     slug = models.SlugField(max_length=128, unique=True, verbose_name="url标识符")
-    content = RichTextUploadingField(verbose_name="内容", config_name='awesome_ckeditor')
+    content = RichTextUploadingField(verbose_name="内容", config_name='awesome_ckeditor', )
     node = models.ForeignKey(Node, on_delete=models.DO_NOTHING, verbose_name="所属节点")
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="user_article", verbose_name="作者")
     source = models.ForeignKey(Source, on_delete=models.DO_NOTHING, verbose_name="来源", blank=True, null=True)

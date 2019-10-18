@@ -8,15 +8,15 @@
 #### 说明
 没有收集静态文件，在 debug 状态安装库后完美运行
 
-#### 体验账号
+#### 体验账号，可以删库重新创建超级账号
 - 账号：demo
 - 密码：django123456
 
 #### 博客内容列表页
-![](http://pic.python3.top/Fi3QfCZl0O7hMH2kb_l5nxLrosrT)
+![](http://pic.xieboke.net/Fi3QfCZl0O7hMH2kb_l5nxLrosrT)
 
 #### 博客编辑页
-![](http://pic.python3.top/Fi4EFcybC88z07tBPjTu5wFtwU-B)
+![](http://pic.xieboke.net/Fi4EFcybC88z07tBPjTu5wFtwU-B)
 
 
 

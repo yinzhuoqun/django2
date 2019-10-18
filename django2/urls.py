@@ -22,6 +22,8 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView  # favicon.ico
 
+from apps.blog.views import *
+
 # favicon.ico
 favicon_view = RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)
 
@@ -55,6 +57,9 @@ urlpatterns = [
                       auth_views.PasswordResetCompleteView.as_view(),
                       name='password_reset_complete',
                   ),
+
+                  # 网站验证
+                  path('root.txt', root)
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
