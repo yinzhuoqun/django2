@@ -36,6 +36,7 @@
                             <div>
                                 <label for="{{ form.test_input.id_for_label }}">{{ form.test_input.help_text }}</label>
                                 {{ form.test_input }}
+                                <small class="">{{ form.test_input.errors }}</small>
                             </div>
                         </div>
 
@@ -43,6 +44,7 @@
                             <div>
                                 <label for="{{ form.test_select.id_for_label }}">{{ form.test_select.help_text }}</label>
                                 {{ form.test_select }}
+                                <small class="">{{ form.test_select.errors }}</small>
                             </div>
                         </div>
 
@@ -50,13 +52,16 @@
                             <div>
                                 <label for="{{ form.test_select1.id_for_label }}">{{ form.test_select1.help_text }}</label>
                                 {{ form.test_select1 }}
+                                <small class="">{{ form.test_select1.errors }}</small>
                             </div>
                         </div>
 
                     </fieldset>
 
                     <div class="submit-row">
-                        <input type="submit" value="保存" class="default" name="_save">
+                        <a href="javascript:window.opener=null;window.open('','_self');window.close();"
+                           class="closelink">关闭</a>
+                        <input type="submit" value="发送" class="default" name="_save">
                     </div>
                     <script type="text/javascript"
                             id="django-admin-form-add-constants"

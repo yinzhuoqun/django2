@@ -49,7 +49,7 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    change_list_template = "friend_url_add_at_article.html"
+    change_list_template = "friend_url_add_at_article.html"  # 当前的模板名称
 
     form = ArticleAdminForm  # 指定了表单，就不要再用 formfield_overrides 了
 

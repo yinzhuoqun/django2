@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt
 
@@ -45,8 +45,12 @@ def test_add_article(request):
 
 
 def add_info(request):
+    pre_page_url = request.GET.get("page", "/")
     if request.method == "POST" and request.POST:
         print(request.POST)
+        form = AddInfoForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect(pre_page_url)
     else:
         form = AddInfoForm
     return render(request, "add_info.html", locals())

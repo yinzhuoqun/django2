@@ -3,16 +3,13 @@
 {% load i18n admin_static %}
 
 {% block object-tools-items %}
-{#        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">#}
-    {#    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>#}
-
-
     {{ block.super }}
+
     <li>
         {#        <a href="/admin/blog/friendsurl/add/" class="addlink">增加 友链</a>#}
-        <a href="{% url 'blog:add_info' %} " class="addlink" onclick="this">增加 信息</a>
+        <a href="{% url 'blog:add_info' %}?page={{ request.path }} " class="related-widget-wrapper-link addlink"
+           onclick="this">增加 信息</a>
     </li>
-
-
+    {# addlink#}
 {% endblock %}
 

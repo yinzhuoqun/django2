@@ -31,8 +31,13 @@ class AddInfoForm(forms.Form):
         ("4", "测试4"),
     )
 
-    test_input = forms.CharField(label="测试输入框", help_text="测试输入框")
+    test_input = forms.CharField(label="测试输入框", help_text="测试输入框", required=False)
     test_select = forms.CharField(label="测试下拉框", help_text="测试多选框", initial="in",
                                   widget=forms.RadioSelect(choices=select_choice, attrs={'class': 'form-control'}))
     test_select1 = forms.CharField(label="测试下拉框1", help_text="测试多选框1",
                                    widget=forms.Select(choices=select_choice, attrs={'class': 'form-control'}))
+
+    def clean_test_input(self):
+        test_input = self.cleaned_data.get("test_input").strip()
+        if not test_input:
+            raise forms.ValidationError("请输入内容")
