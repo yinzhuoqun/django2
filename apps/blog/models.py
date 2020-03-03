@@ -104,7 +104,7 @@ class Article(models.Model):
     """
     主题表/文章表
     """
-    title = models.CharField(max_length=128, unique=True, verbose_name="标题")
+    title = models.CharField(max_length=128, unique=True, verbose_name="标题", help_text="请填写标题")
     slug = models.SlugField(max_length=128, unique=True, verbose_name="url标识符")
     content = RichTextUploadingField(verbose_name="内容", config_name='awesome_ckeditor', )
     node = models.ForeignKey(Node, on_delete=models.DO_NOTHING, verbose_name="所属节点")
@@ -136,12 +136,15 @@ class Article(models.Model):
     # 管理后台显示文章的缩略图
     def thumb_shouw(self):
         if self.get_content_img_url():
+            # 如果加了跳转到其他地方超链接，在 admin 里面不要把该字段加入到 list_display_links
             return format_html(
-                '<span><img src="{}"/>{}</span>', self.get_content_img_url(), "这里是缩略图")
+                '<span><a href="{}" target="_bank"><img src="{}"/ style="height:20px">{}</a></span>',
+                self.get_content_img_url(),
+                self.get_content_img_url(), "这里是缩略图")
         else:
             return format_html('<span style="color:{}">{}</span>', "red", "暂无缩略图")
 
-    thumb_shouw.short_description = format_html('<span class="text">缩略图</span>')   # 新字段的显示的名称，相当于 verbose_name
+    thumb_shouw.short_description = format_html('<span class="text">缩略图</span>')  # 新字段的显示的名称，相当于 verbose_name
     thumb_shouw.admin_order_field = "-time_update"  # 指定排序方式，更新时间倒序排列
 
     class Meta:

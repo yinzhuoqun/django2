@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{% static 'blog_index.js' %}"></script>
+</head>
+<body>
+
+<h2>打开网页成功</h2>
+<button onclick="post_token()">点击</button>
+<button onclick="post_token()">点击</button>
+<button onclick="post_token()">点击</button>
+<script>
+    var storage = window.localStorage;
+
+    function get_token() {
+        var url = "/blog/get_token";
+        $.ajax({
+            url: url,
+            data: {},
+            type: "get",
+            dataType: "json",
+            success: function (responese) {
+                storage.csrf_token = responese.token;
+                // 给 ajax 请求设置请求头 x-csrftoken
+                $.ajaxSetup({
+                    beforeSend: function (xhr, settings) {
+                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                            xhr.setRequestHeader("X-CSRFToken", responese.token);
+                        }
+                    }
+                });
+            },
+            error: function (responese) {
+                console.log("csrf ok!");
+            }
+        });
+
+    }
+
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    // 给 ajax 请求设置请求头 x-csrftoken
+    /*
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", storage.csrf_token);
+            }
+        }
+    });
+     */
+
+    function post_token() {
+        var url = "/blog/test_csrf";
+        $.ajax({
+            url: url,
+            data: {
+                token: 1232312
+            },
+            type: "post",
+            dataType: "json",
+            // 单独给 post 请求设置 X-CSRFToken
+            /*
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("X-CSRFToken", storage.csrf_token);
+            },
+             */
+            success: function (responese) {
+                console.log("csrf test")
+            },
+            error: function (responese) {
+                console.log("csrf error");
+            }
+        });
+    }
+
+
+    // 运行多个函数
+    $(window).load(function () {
+        get_token();
+    });
+
+    console.log(storage.csrf_token);
+</script>
+</body>
+</html>

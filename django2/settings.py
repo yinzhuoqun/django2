@@ -138,6 +138,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static').replace('\\', '/'),
+    os.path.join(BASE_DIR, os.path.join(BASE_DIR, "apps/blog/static")).replace('\\', '/'),
 ]
 STATIC_ROOT = 'static_root/'  # 只有右边斜杠
 
@@ -170,8 +171,10 @@ EMAIL_HOST = 'smtp.exmail.qq.com'  # SMTP地址
 # 发送邮件服务器：smtp.exmail.qq.com ，使用SSL，端口号465
 # 海外发送邮件服务器：hwsmtp.exmail.qq.com ，使用SSL，端口号465
 EMAIL_PORT = 465  # SMTP发送端口
-EMAIL_HOST_USER = ''  # 自己的邮箱
-EMAIL_HOST_PASSWORD = ''  # 我的邮箱密码
+# EMAIL_HOST_USER = ''  # 自己的邮箱
+# EMAIL_HOST_PASSWORD = ''  # 我的邮箱密码
+EMAIL_HOST_USER = 'joyoo@python3.cc'  # 自己的邮箱
+EMAIL_HOST_PASSWORD = 'ZxMDg5U5f2biAAgw'  # 我的邮箱密码
 EMAIL_SUBJECT_PREFIX = '博客管理系统'  # 为邮件Subject-line前缀,默认是'[django]'
 # EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false。与SSL是互相排斥的。
 EMAIL_USE_SSL = True  # 与SMTP服务器通信时，是否启动SSl链接(安全链接)。默认是false ,腾讯用SSL
@@ -185,3 +188,5 @@ SIMPLEUI_LOGO = '/static/images/joyo_icon.png'  # 管理后台log, 本地
 SIMPLEUI_HOME_TITLE = '博客后台管理系统'  # 不启作用
 SIMPLEUI_HOME_ICON = ''  # 首页图标
 SIMPLEUI_INDEX = 'https://xieboke.net'  # 首页跳转地址
+
+print(os.path.exists(os.path.join(BASE_DIR, "configs/test.txt")))

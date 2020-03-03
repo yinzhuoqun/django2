@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import re_path  # favicon.ico
-from django.conf.urls import include
+from django.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
@@ -35,8 +35,8 @@ urlpatterns = [
                   re_path(r'favicon\.ico$', favicon_view),
                   re_path(r'favicon\.png$', favicon_view),
                   path('admin/', admin.site.urls),
-                  path(r'ckeditor/', include('ckeditor_uploader.urls')),
-
+                  path('ckeditor/', include('ckeditor_uploader.urls')),
+                  path('blog/', include('apps.blog.urls', namespace='blog')),
                   path(
                       'admin/password_reset/',
                       auth_views.PasswordResetView.as_view(),
@@ -59,7 +59,7 @@ urlpatterns = [
                   ),
 
                   # 网站验证
-                  path('root.txt', root)
+                  path('root.txt', root),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

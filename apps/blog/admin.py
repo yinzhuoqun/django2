@@ -49,6 +49,8 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
+    change_list_template = "friend_url_add_at_article.html"
+
     form = ArticleAdminForm  # 指定了表单，就不要再用 formfield_overrides 了
 
     list_display = ['id', 'thumb_shouw', 'title', 'node', 'num_views', 'show_status', 'slug', 'user', 'time_create']
