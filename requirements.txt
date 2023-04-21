@@ -10,5 +10,5 @@ pypinyin==0.35.4
 pyquery==1.4.0
 python-slugify==3.0.3
 pytz==2019.2
-sqlparse==0.3.0
+sqlparse==0.4.4
 text-unidecode==1.2
